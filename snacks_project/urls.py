@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include # step 2: after creating urls.py in the app file
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',include('snacks.urls')), # step 3: add the rout for the app 
+    path('cofee/',include('cofee.urls')),
 ]
