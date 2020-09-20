@@ -1,6 +1,6 @@
 # Intro to Django
 
-* *** I Created tow web sites in Django with 2 pages for each app***
+* ***I Created tow web sites in Django with 2 pages for each app***
     * Snacks App
     * Cofee App
 
