@@ -5,28 +5,32 @@ from django.urls import reverse
 
 class SnackTest(SimpleTestCase):
 
-    def test_home_page_status_code(self):
+
+    def status_code(self,page_name):
         expected = 200
-        url = reverse('home')
+        url = reverse(page_name)
         response = self.client.get(url)
         actual = response.status_code # Request to the application
         self.assertEquals(expected, actual)
 
-    def test_about_page_status_code(self):
-        expected = 200
-        url = reverse('about')
+    def page_template(self,page_name):
+        url = reverse(page_name)
         response = self.client.get(url)
-        actual = response.status_code # Request to the application
-        self.assertEquals(expected, actual)
-
-    def test_home_page_template(self):
-        url = reverse('home')
-        response = self.client.get(url)
-        actual = 'snacks-home.html'
+        actual = page_name + '.html'
         self.assertTemplateUsed(response, actual)
+        self.assertTemplateUsed(response,'base-snaks.html')
 
-    def test_about_page_template(self):
-        url = reverse('about')
-        response = self.client.get(url)
-        actual = 'snacks-about.html'
-        self.assertTemplateUsed(response, actual)
+
+
+    def test_home_page(self): 
+        self.status_code('snacks-home')
+
+    def test_about_page(self): 
+        self.status_code('snacks-about')
+
+
+    def test_templet_home_page(self): 
+        self.page_template('snacks-home')
+
+    def test_templet_about_page(self): 
+        self.page_template('snacks-about')
